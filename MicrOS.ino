@@ -43,16 +43,16 @@ String customInput()  //Custom input function
 {
   //Add your input code here and simply return the string with your input.
   //If no input was made, make sure that the function returns nothing (return "";)
-  // -> Make sure that your code runs without delays!
-  //    Else, you would slow down the entire system a lot.
+  // -> Try to avoid using delays!
+  //    Using them slows down the entire system speed.
 }
 
 void customOutput(String str)  //Custom output function
 {
   //Add your output code here and use the str variable as the string to output.
   //Each function call represents one line.
-  // -> Make sure that your code runs without delays!
-  //    Else, you would slow down the entire system a lot.
+  // -> Try to avoid using delays!
+  //    Using them slows down the entire system speed.
 }
 
 //---------------------------------------------------------------------------------------
@@ -276,7 +276,11 @@ String input()  //input a string
   
   if(customInputEnabled)
   {
-    return customInput();
+    bufStr = customInput();
+    if(bufStr != "")
+    {
+      return bufStr;
+    }
   }
 
   return "X-x-X";

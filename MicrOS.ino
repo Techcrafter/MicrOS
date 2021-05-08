@@ -63,8 +63,8 @@ void customOutput(String str)  //Custom output function
 
 #include <EEPROM.h>
 
-const int osVersion = 101;
-const String ident = "MicrOS";
+const int osVersion = 101;  //os version
+const String ident = "MicrOS";  //os identifier
 
 bool debugMode = true;  //set this to true to enable debug commands
 
@@ -84,7 +84,15 @@ String bufStr;
 String procStr;
 int exitCode;
 
-String part1, part2, part3;
+String part1, part2, part3;  //comand parts
+
+int task[3];  //task states
+String taskName[3];  //task names
+
+int regA[3];
+int regB[3];
+int regC[3];
+String out[3];
 
 void setup() {
   //bootcode
@@ -114,7 +122,10 @@ void setup() {
     else
     {
       delay(waitingPhase);
-      while(!Serial);  //wait for serial connection to be established
+      while(!Serial)  //wait for serial connection to be established
+      {
+        delay(waitingPhase);
+      }
       delay(waitingPhase);
     }
     
@@ -319,6 +330,69 @@ void commandInterpreter()  //interpreter for commands
       output("Usage: storage [list | repair]");
     }
   }
+  //-----------run-----------
+  else if(part1 == "run")
+  {
+    if(part3 == "single")
+    {
+      output("Running in single tasking mode!\nOther processes get killed.");
+      task[0] = 0; task[1] = 0; task[2] = 0;
+    }
+
+    bufStr = mfs1Read(2, part2);
+    if(bufStr == "MaxTasks")
+    {
+      output("Task limit of 3 has already been reached!");
+    }
+    else if(bufStr == "NotFound")
+    {
+      output("Program not found!");
+      output("Usage: run (filename)");
+    }
+    else
+    {
+      output("Task started with PID " + bufStr + "!");
+    }
+  }
+  //-----------tasks-----------
+  else if(part1 == "task")
+  {
+    if(part2 == "list")
+    {
+      output("PID | Task\n----------\nX   | (SYSTEM)");
+      bufInt1 = 0;
+      while(bufInt1 < 3)
+      {
+        if(task[bufInt1] != 0)
+        {
+          output(String(bufInt1) + "     " + taskName[bufInt1]);
+        }
+        bufInt1++;
+      }
+      output("\nLimit: 3 tasks");
+    }
+    else if(part2 == "kill")
+    {
+      if(part3.toInt() < 0 || part3.toInt() > 2)
+      {
+        output("Wrong syntax or invalid PID!\nUsage: task kill (PID)");
+      }
+      else if(task[part3.toInt()] != 0)
+      {
+        output(String(task[part3.toInt()]));
+        task[part3.toInt()] = 0;
+        output("Task killed successfully!");
+      }
+      else
+      {
+        output("There is no task with this PID!");
+      }
+    }
+    else
+    {
+      output("Usage: task [list | kill]");
+    }
+  }
   //-----------debug-----------
   else if(part1 == "debug")
   {
@@ -403,7 +477,7 @@ String mfs1Read(int action, String parameter)
   //1 - list all files in /
   else if(action == 1 && parameter == "sto0/")
   {
-    output("SYSTEM.CNF - 10 bytes");
+    output("(SYSTEM CONFIGURATION) - 10 bytes");
     bufInt1 = 10;
     while(bufInt1 < EEPROM.length())
     {
@@ -426,7 +500,43 @@ String mfs1Read(int action, String parameter)
       bufInt1++;
     }
 
-    return String(bufInt1);
+    return "Done!";
+  }
+  //2 - execute/open file/program with the filename defined by the parameter string
+  else if(action == 2)
+  {
+    bufInt1 = 10;
+    while(bufInt1 < EEPROM.length())
+    {
+      if(EEPROM.read(bufInt1) == 123)
+      {
+        if(readEEPROMToString(bufInt1+1) == parameter)
+        {
+          bufInt2 = 0;
+          while(bufInt2 < 3)
+          {
+            if(task[bufInt2] == 0)
+            {
+              task[bufInt2] = bufInt1 + parameter.length() + 1;
+              taskName[bufInt2] = parameter;
+              
+              regA[bufInt2] = 0;
+              regB[bufInt2] = 0;
+              regC[bufInt2] = 0;
+              out[bufInt2] = "";
+              
+              return String(bufInt2);
+            }
+            bufInt2++;
+          }
+          
+          return "MaxTasks";
+        }
+      }
+      bufInt1++;
+    }
+
+    return "NotFound";
   }
   else
   {

@@ -39,7 +39,7 @@ MicrOS is still under development and far away from being finished. If you like 
 7. ![MicrOS setup assistant](https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/setup.png)
 8. After you have completed the initial setup and restarted your board, you will see the command line.
 9. ![MicrOS setup assistant](https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/command-line.png)
-10. Please continue reading 
+10. You can find more information on how to use MicrOS below this.
 
 ## Instructions and documentations (not finished yet)
 

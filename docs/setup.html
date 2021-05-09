@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 7.1.0">
+<title>setup</title>
+</head>
+<body>
+<font face="arial,helvetica">
+<h1>Setup and configuration guide</h1>
+<h2>Change the serial baud rate:</h2>
+<p>Simply locate the following line and change it to your desired value.
+<img alt="Change your serial baud rate here" src="https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/serial-baud-rate.png"></p>
+<h2>Configure other input or output devices:</h2>
+<ol>
+<li>Add the libraries in the section for those.</li>
+<li><img alt="Add libraries and function code here" src="https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/customIO.png"></li>
+<li>Configure the code for input and/or output in the functions called customInput() and customOutput().</li>
+<li>Upload the sketch to your Arduino.</li>
+<li>Run the command matching your setup:</li>
+<li>
+<ul>
+<li>'sysconf customIO none' to disable custom input and output</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>'sysconf customIO input' to enable only custom input</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>'sysconf customIO output' to enable only custom output</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>'sysconf customIO both' to enable custom input and output</li>
+</ul>
+</li>
+<li><strong><em>Your configuration will be saved to the EEPROM!</em></strong></li>
+<li>You should now be able to use your new input and/or output device!</li>
+</ol>
+<p><strong><em>Warning: Try to avoid delays in your IO functions. This would slow down the entire system.</em></strong></p>
+<p><a href="https://techcrafter.github.io/MicrOS">Back to the main page</a></p>
+
+</font>
+</body>
+</html>

@@ -14,7 +14,7 @@
  *        1) Open serial monitor and select
  *           "Newline" line ending and 9600 baud rate.
  *           > The baud rate can be changed in the section below.
- *        2) Upload the sketch to your arduino.
+ *        2) Upload the sketch to your Arduino.
  *        3) Wait until the setup shows up on your serial monitor.
  *        4) Follow the steps of the setup assistant.
  *        5) Enjoy! ;)

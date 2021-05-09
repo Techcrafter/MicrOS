@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 7.1.0">
+<title>MicrOS</title>
+</head>
+<body>
+<font face="arial,helvetica">
+<pre><code>     /|    //| |                          //   ) ) //   ) )
+    //|   // | |    ( )  ___      __     //   / / ((
+   // |  //  | |   / / //   ) ) //  ) ) //   / /    \\
+  //  | //   | |  / / //       //      //   / /       ) )
+ //   |//    | | / / ((____   //      ((___/ / ((___ / /
+</code></pre>
+
+<h1>MicrOS</h1>
+<p>A multitasking operating system for Arduino and compatible boards.</p>
+<p>The idea behind this operating system is to use the Arduino as a standalone computer. The only thing you'll need (beside the Arduino itself) is a way to send and receive text via serial (the serial monitor that comes with the Arduino IDE for example). There is also an easy way to add libraries for keyboards and LCD screens for example, to use those as input and/or output devices.
+You will be able to program on the Arduino itself over the serial connection, run those programs and even save them to the EEPROM!</p>
+<h2>Still under development</h2>
+<p>MicrOS is still under development and far away from being finished. If you like this project, please consider giving it a star!</p>
+<h2>Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Board</th>
+<th>Compatibility</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nano</td>
+<td>Not Compatible</td>
+<td>Not enough dynamic memory</td>
+</tr>
+<tr>
+<td>UNO</td>
+<td>Not Compatible</td>
+<td>Not enough dynamic memory</td>
+</tr>
+<tr>
+<td>MEGA</td>
+<td>Fully Compatible</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>This list is not completed yet and may change at any time during the development process!</em></strong></p>
+<h2>How to install</h2>
+<p><strong><em>Remeber: MicrOS is not finished yet! You might get unexpected results.</em></strong></p>
+<ol>
+<li>Install the Arduino IDE if you have not done this already.</li>
+<li><a href="https://raw.githubusercontent.com/Techcrafter/MicrOS/main/MicrOS.ino">Download the latest (unstable) main commit</a> - right click, 'Save link as...' and save as 'MicrOS.ino'.</li>
+<li>Open the downloaded 'MicrOS.ino' file in the Arduino IDE, select your board and the correct port in the 'Tools' section.</li>
+<li>Open the serial monitor in the 'Tools' section and set it to 'Newline' line-ending and 9600 bauds.</li>
+<li>Upload the sketch to your board.</li>
+<li>MicrOS should now be usable in the serial monitor window.</li>
+<li><img alt="MicrOS setup assistant" src="https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/setup.png"></li>
+<li>After you have completed the initial setup and restarted your board, you will see the command line.</li>
+<li><img alt="MicrOS setup assistant" src="https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/command-line.png"></li>
+<li>Please continue reading </li>
+</ol>
+<h2>Instructions and documentations (not finished yet)</h2>
+<ul>
+<li><a href="https://techcrafter.github.io/MicrOS">HTML version of this document</a></li>
+<li><a href="https://techcrafter.github.io/MicrOS/setup.html">Setup and configuration guide (custom IO, change serial baud rate, ...)</a></li>
+<li><a href="https://techcrafter.github.io/MicrOS/user-guide.html">Basic user guide (commands, syntax, ...)</a></li>
+<li><a href="https://techcrafter.github.io/MicrOS/MicroASM.html">How to code in MicroASM</a></li>
+<li><a href="https://techcrafter.github.io/MicrOS/dev-doc.html">Developer documentation</a></li>
+</ul>
+
+</font>>
+</body>
+</html>

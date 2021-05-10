@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 7.1.0">
+<title>user-guide</title>
+</head>
+<body>
+<font face="arial,helvetica">
+<pre><code>     /|    //| |                          //   ) ) //   ) )
+    //|   // | |    ( )  ___      __     //   / / ((
+   // |  //  | |   / / //   ) ) //  ) ) //   / /    \\
+  //  | //   | |  / / //       //      //   / /       ) )
+ //   |//    | | / / ((____   //      ((___/ / ((___ / /
+</code></pre>
+
+<h1>Basic user guide</h1>
+<h2>Basics</h2>
+<p>You use MicrOS by entering commands. Those are normally sent over the serial connection and then processed by the board.</p>
+<p>Those commands usually use one of the following syntax:</p>
+<ul>
+<li>main - for example 'dir'</li>
+<li>main argument - for example 'storage list'</li>
+<li>main sub argument - for example 'sysconf customIO none'</li>
+</ul>
+<h2>Command list</h2>
+<p>A list of the MicrOS version 1.01 commands:</p>
+<table>
+<thead>
+<tr>
+<th>main</th>
+<th>sub/argument</th>
+<th>argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sysconf</td>
+<td>customIO</td>
+<td>none/input/output/both</td>
+<td>disable/enable custom IO</td>
+</tr>
+<tr>
+<td></td>
+<td>reset</td>
+<td></td>
+<td>reset everything including files</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>(some text)</td>
+<td></td>
+<td>echo the text you have entered</td>
+</tr>
+<tr>
+<td>help</td>
+<td></td>
+<td></td>
+<td>shows website link for help</td>
+</tr>
+<tr>
+<td>sysinfo</td>
+<td></td>
+<td></td>
+<td>displays system information</td>
+</tr>
+<tr>
+<td>dir</td>
+<td></td>
+<td></td>
+<td>lists files in the current directory</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>list</td>
+<td></td>
+<td>lists all storage devices</td>
+</tr>
+<tr>
+<td></td>
+<td>repair</td>
+<td></td>
+<td>fixes storage issues on sto0</td>
+</tr>
+<tr>
+<td>run</td>
+<td>(filename)</td>
+<td></td>
+<td>run the specified program</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>single</td>
+<td>kill all other tasks before running</td>
+</tr>
+<tr>
+<td>task</td>
+<td>list</td>
+<td></td>
+<td>lists all currently running tasks</td>
+</tr>
+<tr>
+<td></td>
+<td>kill</td>
+<td>(PID)</td>
+<td>kill the task with the defined PID</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>error</td>
+<td></td>
+<td>causes an intentional error</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>Debug commands are only available in debug mode!</em></strong></p>
+<h2>Task system</h2>
+<p>MicrOS is a multitasking operating system. This allows you to run multiple programs or instances of a program at the same time. Using the 'single' argument for the 'run' command, will kill all other tasks before executing the defined program. This might be helpful for some programs.</p>
+<p>To see all currently running tasks, run 'task list'. This will display all currently running tasks and their PID. To kill a task, run 'task kill (PID)'.</p>
+<h2>Storage</h2>
+<p>MicrOS uses the EEPROM of the board to store programs you have coded and other things like the system configuration. To do this, MicrOS uses the mfs1 (micro file-system version 1). The setup assistant will format your EEPROM to mfs1 the first time you launch MicrOS (it will ask you before, so do not worry).</p>
+<p><strong><em>Formatting the EEPROM will erase all of its stored data! This cannot be undone!</em></strong></p>
+<p>If you encounter any error that your EEPROM is corrupted, you can run 'storage repair'. This does not always work, but it is worth a try.</p>
+<h2>Reset</h2>
+<p>To reset MicrOS, simply run 'sysconf reset'. You will be asked if you want to continue. If you decide to do so, the system will reset after waiting 60 seconds.</p>
+<p><strong><em>Resetting the system does NOT format your EEPROM! It will simply change the configuration. This causes the system to run the initial setup again, the next time you start the board.</em></strong></p>
+<h2>Debug mode</h2>
+<p>Debug mode can only be enabled in the code itself by changing the line 'const bool debugMode = false/true'.</p>
+<p><strong><em>It is NOT recommended to enable debug mode unless you are trying to debug the operating system itself!</em></strong></p>
+<h2>Errors and possible solutions</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invalid IO configuration!</td>
+<td>run 'sysconf customIO none/input/output/both'</td>
+</tr>
+<tr>
+<td>Manually triggered error!</td>
+<td>disable debug mode</td>
+</tr>
+<tr>
+<td>Disk st0 is corrupted!</td>
+<td>run 'storage repair'</td>
+</tr>
+<tr>
+<td>Invalid mfs1 read instruction!</td>
+<td>if this happens multiple times, open an issue on GitHub</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>If you encounter a different error or problem multiple times, please open an issue on GitHub!</p>
+<h2>Suggestions</h2>
+<p>Suggestions can also be made on the GitHub page using an issue.</p>
+<h2>Contact</h2>
+<p>Do you have any other questions, ideas, ...?</p>
+<p><a href="mailto:techcrafter808@outlook.com">Send me an e-mail</a> and I will try to respond as quick as possible!</p>
+<p><a href="https://techcrafter.github.io/MicrOS">Back to the main page</a></p>
+
+</font>
+</body>
+</html>

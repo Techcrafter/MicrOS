@@ -243,7 +243,7 @@ void commandInterpreter()  //interpreter for commands
       }
     }
     //-----------sysconf/reset-----------
-    else if(part2 == "reset" && part3 == "")
+    else if(part2 == "reset")
     {
       output("Do you really want to reset?\nYou will lose all your data!\nType 'continue' to continue or turn power off...");
       while(input() != "continue")

@@ -1,7 +1,16 @@
+```
+     /|    //| |                          //   ) ) //   ) )
+    //|   // | |    ( )  ___      __     //   / / ((
+   // |  //  | |   / / //   ) ) //  ) ) //   / /    \\
+  //  | //   | |  / / //       //      //   / /       ) )
+ //   |//    | | / / ((____   //      ((___/ / ((___ / /
+```
+
 # Setup and configuration guide
 
 ## Change the serial baud rate:
 Simply locate the following line and change it to your desired value.
+
 ![Change your serial baud rate here](https://raw.githubusercontent.com/Techcrafter/MicrOS/main/docs/img/serial-baud-rate.png)
 
 ## Configure other input or output devices:

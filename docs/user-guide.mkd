@@ -1,0 +1,83 @@
+```
+     /|    //| |                          //   ) ) //   ) )
+    //|   // | |    ( )  ___      __     //   / / ((
+   // |  //  | |   / / //   ) ) //  ) ) //   / /    \\
+  //  | //   | |  / / //       //      //   / /       ) )
+ //   |//    | | / / ((____   //      ((___/ / ((___ / /
+```
+
+# Basic user guide
+
+## Basics
+You use MicrOS by entering commands. Those are normally sent over the serial connection and then processed by the board.
+
+Those commands usually use one of the following syntax:
+
+* main - for example 'dir'
+* main argument - for example 'storage list'
+* main sub argument - for example 'sysconf customIO none'
+
+## Command list
+A list of the MicrOS version 1.01 commands:
+
+|main   |sub/argument|argument              |Description                         |
+|-------|------------|----------------------|------------------------------------|
+|sysconf|customIO    |none/input/output/both|disable/enable custom IO            |
+|       |reset       |                      |reset everything including files    |
+|echo   |(some text) |                      |echo the text you have entered      |
+|help   |            |                      |shows website link for help         |
+|sysinfo|            |                      |displays system information         |
+|dir    |            |                      |lists files in the current directory|
+|storage|list        |                      |lists all storage devices           |
+|       |repair      |                      |fixes storage issues on sto0        |
+|run    |(filename)  |                      |run the specified program           |
+|       |            |single                |kill all other tasks before running |
+|task   |list        |                      |lists all currently running tasks   |
+|       |kill        |(PID)                 |kill the task with the defined PID  |
+|debug  |error       |                      |causes an intentional error         |
+|       |            |                      |                                    |
+
+***Debug commands are only available in debug mode!***
+
+## Task system
+MicrOS is a multitasking operating system. This allows you to run multiple programs or instances of a program at the same time. Using the 'single' argument for the 'run' command, will kill all other tasks before executing the defined program. This might be helpful for some programs.
+
+To see all currently running tasks, run 'task list'. This will display all currently running tasks and their PID. To kill a task, run 'task kill (PID)'.
+
+## Storage
+MicrOS uses the EEPROM of the board to store programs you have coded and other things like the system configuration. To do this, MicrOS uses the mfs1 (micro file-system version 1). The setup assistant will format your EEPROM to mfs1 the first time you launch MicrOS (it will ask you before, so do not worry).
+
+***Formatting the EEPROM will erase all of its stored data! This cannot be undone!***
+
+If you encounter any error that your EEPROM is corrupted, you can run 'storage repair'. This does not always work, but it is worth a try.
+
+## Reset
+To reset MicrOS, simply run 'sysconf reset'. You will be asked if you want to continue. If you decide to do so, the system will reset after waiting 60 seconds.
+
+***Resetting the system does NOT format your EEPROM! It will simply change the configuration. This causes the system to run the initial setup again, the next time you start the board.***
+
+## Debug mode
+Debug mode can only be enabled in the code itself by changing the line 'const bool debugMode = false/true'.
+
+***It is NOT recommended to enable debug mode unless you are trying to debug the operating system itself!***
+
+## Errors and possible solutions
+|Error                         |Solution                                               |
+|------------------------------|-------------------------------------------------------|
+|Invalid IO configuration!     |run 'sysconf customIO none/input/output/both'          |
+|Manually triggered error!     |disable debug mode                                     |
+|Disk st0 is corrupted!        |run 'storage repair'                                   |
+|Invalid mfs1 read instruction!|if this happens multiple times, open an issue on GitHub|
+|                              |                                                       |
+
+If you encounter a different error or problem multiple times, please open an issue on GitHub!
+
+## Suggestions
+Suggestions can also be made on the GitHub page using an issue.
+
+## Contact
+Do you have any other questions, ideas, ...?
+
+[Send me an e-mail](mailto:techcrafter808@outlook.com) and I will try to respond as quick as possible!
+
+[Back to the main page](https://techcrafter.github.io/MicrOS)

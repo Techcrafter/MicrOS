@@ -66,7 +66,7 @@ void customOutput(String str)  //Custom output function
 const int osVersion = 101;  //os version
 const String ident = "MicrOS";  //os identifier
 
-bool debugMode = true;  //set this to true to enable debug commands
+const bool debugMode = true;  //set this to true to enable debug commands
 
 const int serialTimeout = 500;  //500 gives best results
 const int waitingPhase = 100;  //100 gives best results

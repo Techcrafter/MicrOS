@@ -21,8 +21,6 @@ MicrOS is still under development and far away from being finished. If you like 
 |Nano |Not Compatible  |Not enough dynamic memory|
 |UNO  |Not Compatible  |Not enough dynamic memory|
 |MEGA |Fully Compatible|                         |
-|     |                |                         |
-|     |                |                         |
 
 ***This list is not completed yet and may change at any time during the development process!***
 
